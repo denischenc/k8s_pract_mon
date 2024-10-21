@@ -1,0 +1,3 @@
+---
+kibana_conf_dir: /etc/kibana
+kibana_conf_file: "kibana.yaml"

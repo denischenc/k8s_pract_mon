@@ -1,0 +1,21 @@
+---
+- name: install kibana
+  ansible.builtin.apt:
+    name: kibana
+    update_cache: yes
+
+- name: copy kibana conf
+  ansible.builtin.template:
+    src: kibana.yaml.j2
+    dest: "{{ kibana_conf_dir }}/{{ kibana_conf_file }}"
+    owner: root
+    group: kibana
+    mode: 0660
+
+- name: force restart
+
+- name: start service
+  ansible.builtin.systemd:
+    name: kibana
+    state: started
+    enabled: true

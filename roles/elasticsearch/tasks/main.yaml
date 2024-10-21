@@ -1,0 +1,29 @@
+---
+- name: add elastic repo
+  ansible.builtin.apt_repository:
+    repo: "deb [trusted=yes] {{ elastic_repo }} stable main"
+    state: present
+    filename: "{{ elastic_sources }}"
+
+- name: install elastic
+  ansible.builtin.apt:
+    name: elasticsearch
+    update_cache: yes
+    timeout: 3600
+
+- name: copy elastic conf
+  ansible.builtin.template:
+    src: elasticsearch.yaml.j2
+    dest: "{{ elastic_conf }}/elasticsearch.yaml"
+    owner: elasticsearch
+    group: elasticsearch
+    mode: 0660
+
+- name: force restart
+  meta: flush_handlers
+
+- name: start service
+  ansible.builtin.systemd:
+    name: elasticsearch
+    state: started
+    enabled: true

@@ -1,0 +1,15 @@
+---
+
+- name: install monitoring
+  hosts: monitoring
+  vars_files:
+    - defaults/main.yaml
+  become: true
+  roles:
+    - prometheus
+    - elasticsearch
+    - kibana
+    - node-exporter
+    - fluentbit
+
+

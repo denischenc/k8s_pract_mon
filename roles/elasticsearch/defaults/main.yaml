@@ -1,0 +1,5 @@
+---
+
+elastic_repo: https://mirror.yandex.ru/mirrors/elastic/7/
+elastic_sources: elastic-7.x
+elastic_conf: /etc/elasticsearch
